@@ -1,10 +1,6 @@
 package cz.czechitas.ukol3.model;
 
 public class Disk {
-    /*
-    long kapacita – v bajtech
-    long vyuziteMisto – v bajtech
-     */
     private Long kapacita;
     private Long vyuziteMisto = 0L;
 
@@ -13,6 +9,9 @@ public class Disk {
     }
 
     public void setKapacita(Long kapacita) {
+        if (kapacita < 0) {
+            System.err.println("Kapacita disku nesmí být menší než 0");
+        }
         this.kapacita = kapacita;
     }
 
@@ -21,6 +20,11 @@ public class Disk {
     }
 
     public void setVyuziteMisto(Long vyuziteMisto) {
+        if (vyuziteMisto < 0) {
+            System.err.println("Kapacita disku nesmí být menší než 0");
+        } else if (vyuziteMisto > kapacita) {
+            System.err.println("Na disku není dostatek místa");
+        }
         this.vyuziteMisto = vyuziteMisto;
     }
 

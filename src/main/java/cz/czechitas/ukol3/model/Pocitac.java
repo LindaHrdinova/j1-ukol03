@@ -10,7 +10,8 @@ public class Pocitac {
     public String toString() {
         if (jeZapnuty()) {
             return (pevnyDisk.toString() + "\n" + ram.toString() + "\n" + cpu.toString());
-        };
+        }
+        ;
         return null;
     }
 

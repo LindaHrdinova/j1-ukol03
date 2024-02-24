@@ -11,7 +11,6 @@ import cz.czechitas.ukol3.model.Procesor;
 public class HlavniProgram {
 
     public static void main(String... args) {
-        //TODO tady bude váš kód - vytvoření instance třídy Pocitac, zapnutí, vpynutí, výpis hodnot.
         System.out.println("Program spuštěn.");
 
         Pocitac lindinPocitac = new Pocitac();
@@ -36,12 +35,11 @@ public class HlavniProgram {
 
         lindinPocitac.zapniSe();
         lindinPocitac.zapniSe();
-        System.out.println(lindinPocitac.toString());
-
+        
         lindinPocitac.vymazSouboryOVelikosti(50);
-        lindinPocitac.vytvorSouborOVelikosti(500);
+        lindinPocitac.vytvorSouborOVelikosti(990);
         lindinPocitac.vymazSouboryOVelikosti(450);
-
+        System.out.println(lindinPocitac.toString());
         lindinPocitac.vypniSe();
         lindinPocitac.vypniSe();
     }
