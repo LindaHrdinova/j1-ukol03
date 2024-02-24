@@ -1,7 +1,7 @@
 package cz.czechitas.ukol3.model;
 
 public class Pamet {
-    public Long kapacita; // v bajtech
+    private Long kapacita; // v bajtech
 
     public Long getKapacita() {
         return kapacita;

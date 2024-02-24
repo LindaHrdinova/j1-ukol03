@@ -1,8 +1,8 @@
 package cz.czechitas.ukol3.model;
 
 public class Procesor {
-    public String vyrobce;
-    public Long rychlost; // v hz
+    private String vyrobce;
+    private Long rychlost; // v hz
 
     public String getVyrobce() {
         return vyrobce;

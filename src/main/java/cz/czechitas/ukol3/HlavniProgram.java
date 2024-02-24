@@ -16,13 +16,11 @@ public class HlavniProgram {
 
         Pocitac lindinPocitac = new Pocitac();
         System.out.println(lindinPocitac.toString());
-             // Vypíše chybu, protože počítač v tuto chvíli nemá všechny povinné součásti.
 
         Procesor lindinProcesor = new Procesor();
         lindinProcesor.setRychlost(3_200_000_000L);
         lindinProcesor.setVyrobce("AMD");
         lindinPocitac.zapniSe();
-        System.out.println("Procesor je od firmy " + lindinProcesor.vyrobce);
 
         Pamet lindinaPamet = new Pamet();
         lindinaPamet.setKapacita(13_700_000_000L);
@@ -37,11 +35,14 @@ public class HlavniProgram {
         System.out.println(lindinPocitac.toString());
 
         lindinPocitac.zapniSe();
-        lindinPocitac.zapniSe();      // Vypíše chybu, protože počítač už běží
+        lindinPocitac.zapniSe();
         System.out.println(lindinPocitac.toString());
+
+        lindinPocitac.vymazSouboryOVelikosti(50);
+        lindinPocitac.vytvorSouborOVelikosti(500);
+        lindinPocitac.vymazSouboryOVelikosti(450);
+
         lindinPocitac.vypniSe();
-
-        lindinPocitac.vypniSe();      // Nevypíše chybu, ale nic neprovede, protože počítač už je vypnutý
+        lindinPocitac.vypniSe();
     }
-
 }

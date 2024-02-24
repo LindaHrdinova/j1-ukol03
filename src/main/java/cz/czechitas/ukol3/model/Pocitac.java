@@ -2,14 +2,15 @@ package cz.czechitas.ukol3.model;
 
 public class Pocitac {
 
-    public Boolean jeZapnuty = false;
-    public Procesor cpu;
-    public Pamet ram;
-    public Disk pevnyDisk;
+    private Boolean jeZapnuty = false;
+    private Procesor cpu;
+    private Pamet ram;
+    private Disk pevnyDisk;
 
     public String toString() {
-        if(jeZapnuty)
-        {return pevnyDisk.toString() + "\n" + ram.toString() + "\n" + cpu.toString();}
+        if (jeZapnuty()) {
+            return (pevnyDisk.toString() + "\n" + ram.toString() + "\n" + cpu.toString());
+        };
         return null;
     }
 
@@ -18,19 +19,18 @@ public class Pocitac {
     }
 
     public void zapniSe() {
-        if (jeZapnuty) {
+        if (jeZapnuty()) {
             System.err.println("Počítač už je zapnutý.");
         } else if (ram == null || cpu == null || pevnyDisk == null) {
             System.err.println("Počítač nemá všechny součástky");
-        }
-        else {
+        } else {
             System.out.println("Počítač se zapnul.");
             jeZapnuty = true;
         }
     }
 
     public void vypniSe() {
-        if (jeZapnuty) {
+        if (jeZapnuty()) {
             System.out.println("Počítač se vypnul.");
             jeZapnuty = false;
         }
@@ -58,6 +58,32 @@ public class Pocitac {
 
     public void setPevnyDisk(Disk pevnyDisk) {
         this.pevnyDisk = pevnyDisk;
+    }
+
+    public void vytvorSouborOVelikosti(long velikost) {
+        if (!jeZapnuty()) {
+            return;
+        }
+        long vyuziteMisto = pevnyDisk.getVyuziteMisto();
+        if (pevnyDisk.getVyuziteMisto() + velikost <= pevnyDisk.getKapacita()) {
+            pevnyDisk.setVyuziteMisto(vyuziteMisto + velikost);
+            System.out.println("Soubor vytvořen.");
+        } else {
+            System.err.println("Na disku není dostatek místa.");
+        }
+    }
+
+    public void vymazSouboryOVelikosti(long velikost) {
+        if (!jeZapnuty()) {
+            return;
+        }
+        long vyuziteMisto = pevnyDisk.getVyuziteMisto();
+        if (pevnyDisk.getVyuziteMisto() - velikost >= 0) {
+            pevnyDisk.setVyuziteMisto(vyuziteMisto - velikost);
+            System.out.println("Soubor smazán.");
+        } else {
+            System.err.println("Disk nemá takové množství obsazeného místa.");
+        }
     }
 }
 

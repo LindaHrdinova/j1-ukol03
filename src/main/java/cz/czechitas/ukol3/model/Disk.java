@@ -5,8 +5,8 @@ public class Disk {
     long kapacita – v bajtech
     long vyuziteMisto – v bajtech
      */
-    public Long kapacita;
-    public Long vyuziteMisto;
+    private Long kapacita;
+    private Long vyuziteMisto = 0L;
 
     public Long getKapacita() {
         return kapacita;
@@ -25,6 +25,6 @@ public class Disk {
     }
 
     public String toString() {
-        return ("Kapacita disku: " + kapacita + " B");
+        return ("Kapacita disku: " + kapacita + " B\nObsazené místo: " + vyuziteMisto + " B.");
     }
 }
