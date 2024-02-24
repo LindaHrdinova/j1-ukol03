@@ -78,6 +78,33 @@ public class Pocitac {
         if (!jeZapnuty()) {
             return;
         }
+        long vyuziteMisto = pevnyDisk.getVyuziteMisto();
+        if (pevnyDisk.getVyuziteMisto() + velikost <= pevnyDisk.getKapacita()) {
+            pevnyDisk.setVyuziteMisto(vyuziteMisto + velikost);
+            System.out.println("Soubor vytvořen.");
+        } else {
+            System.err.println("Na disku není dostatek místa.");
+        }
+    }
+
+    public void vymazSouboryOVelikosti(long velikost) {
+        if (!jeZapnuty()) {
+            return;
+        }
+        long vyuziteMisto = pevnyDisk.getVyuziteMisto();
+        if (pevnyDisk.getVyuziteMisto() - velikost >= 0) {
+            pevnyDisk.setVyuziteMisto(vyuziteMisto - velikost);
+            System.out.println("Soubor smazán.");
+        } else {
+            System.err.println("Disk nemá takové množství obsazeného místa.");
+        }
+    }
+
+    /*nedodělaný bonus k domácímu úkolu
+    public void vytvorSouborOVelikosti(long velikost) {
+        if (!jeZapnuty()) {
+            return;
+        }
         if (pevnyDisk2 != null) {
             long celkoveVyuziteMisto = pevnyDisk.getVyuziteMisto() + pevnyDisk2.getVyuziteMisto();
             long celkovaKapacita = pevnyDisk.getKapacita() + pevnyDisk2.getKapacita();
@@ -101,8 +128,9 @@ public class Pocitac {
                 System.err.println("Na disku není dostatek místa.");
             }
         }
-    }
+    }*/
 
+    /* nedodělaný bonus k domácímu úkolu
     public void vymazSouboryOVelikosti(long velikost) {
         if (!jeZapnuty()) {
             return;
@@ -127,6 +155,6 @@ public class Pocitac {
                 }
             }
         }
-    }
+    }*/
 }
 
