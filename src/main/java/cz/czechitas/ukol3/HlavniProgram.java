@@ -27,6 +27,9 @@ public class HlavniProgram {
         Disk lindinDisk = new Disk();
         lindinDisk.setKapacita(954_000_000_000L);
 
+        /*Disk lindinDisk2 = new Disk();
+        lindinDisk2.setKapacita(954_000_000_000L);*/
+
         lindinPocitac.setCpu(lindinProcesor);
         lindinPocitac.setRam(lindinaPamet);
         lindinPocitac.setPevnyDisk(lindinDisk);
@@ -35,7 +38,7 @@ public class HlavniProgram {
 
         lindinPocitac.zapniSe();
         lindinPocitac.zapniSe();
-        
+
         lindinPocitac.vymazSouboryOVelikosti(50);
         lindinPocitac.vytvorSouborOVelikosti(990);
         lindinPocitac.vymazSouboryOVelikosti(450);

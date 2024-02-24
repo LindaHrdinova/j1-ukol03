@@ -6,13 +6,18 @@ public class Pocitac {
     private Procesor cpu;
     private Pamet ram;
     private Disk pevnyDisk;
+    private Disk pevnyDisk2;
 
     public String toString() {
-        if (jeZapnuty()) {
-            return (pevnyDisk.toString() + "\n" + ram.toString() + "\n" + cpu.toString());
+        if (!jeZapnuty()) {
+            return null;
         }
-        ;
-        return null;
+        if (pevnyDisk2 == null) {
+            return (pevnyDisk.toString() + "\n" + ram.toString() + "\n" + cpu.toString());
+        } else {
+            return (pevnyDisk.toString() + "\n" + pevnyDisk2.toString() + "\n" + ram.toString() + "\n" + cpu.toString());
+        }
+
     }
 
     public boolean jeZapnuty() {
@@ -61,16 +66,40 @@ public class Pocitac {
         this.pevnyDisk = pevnyDisk;
     }
 
+    public Disk getPevnyDisk2() {
+        return pevnyDisk2;
+    }
+
+    public void setPevnyDisk2(Disk pevnyDisk2) {
+        this.pevnyDisk2 = pevnyDisk2;
+    }
+
     public void vytvorSouborOVelikosti(long velikost) {
         if (!jeZapnuty()) {
             return;
         }
-        long vyuziteMisto = pevnyDisk.getVyuziteMisto();
-        if (pevnyDisk.getVyuziteMisto() + velikost <= pevnyDisk.getKapacita()) {
-            pevnyDisk.setVyuziteMisto(vyuziteMisto + velikost);
-            System.out.println("Soubor vytvořen.");
+        if (pevnyDisk2 != null) {
+            long celkoveVyuziteMisto = pevnyDisk.getVyuziteMisto() + pevnyDisk2.getVyuziteMisto();
+            long celkovaKapacita = pevnyDisk.getKapacita() + pevnyDisk2.getKapacita();
+            if (celkoveVyuziteMisto + velikost <= celkovaKapacita) {
+                if (velikost + pevnyDisk.getVyuziteMisto() <= pevnyDisk.getKapacita()) {
+                    pevnyDisk.setVyuziteMisto(pevnyDisk.getVyuziteMisto() + velikost);
+                } else {
+                    pevnyDisk2.setVyuziteMisto(velikost - (pevnyDisk.getKapacita() - pevnyDisk.getVyuziteMisto()));
+                    pevnyDisk.setKapacita(pevnyDisk.getKapacita());
+                }
+                System.out.println("Soubor vytvořen.");
+            } else {
+                System.err.println("Na discích není dostatek místa.");
+            }
         } else {
-            System.err.println("Na disku není dostatek místa.");
+            long vyuziteMisto = pevnyDisk.getVyuziteMisto();
+            if (pevnyDisk.getVyuziteMisto() + velikost <= pevnyDisk.getKapacita()) {
+                pevnyDisk.setVyuziteMisto(vyuziteMisto + velikost);
+                System.out.println("Soubor vytvořen.");
+            } else {
+                System.err.println("Na disku není dostatek místa.");
+            }
         }
     }
 
@@ -78,12 +107,25 @@ public class Pocitac {
         if (!jeZapnuty()) {
             return;
         }
-        long vyuziteMisto = pevnyDisk.getVyuziteMisto();
-        if (pevnyDisk.getVyuziteMisto() - velikost >= 0) {
-            pevnyDisk.setVyuziteMisto(vyuziteMisto - velikost);
-            System.out.println("Soubor smazán.");
-        } else {
-            System.err.println("Disk nemá takové množství obsazeného místa.");
+
+        if (pevnyDisk2 != null) {
+            long celkoveVyuziteMisto = pevnyDisk.getVyuziteMisto() + pevnyDisk2.getVyuziteMisto();
+            if (celkoveVyuziteMisto - velikost >= 0) {
+                if (pevnyDisk2.getVyuziteMisto() - velikost >= pevnyDisk2.getKapacita()) {
+                    pevnyDisk.setVyuziteMisto(velikost - pevnyDisk2.getVyuziteMisto());
+                    pevnyDisk2.setVyuziteMisto(0L);
+                } else {
+                    System.err.println("Disky nemá takové množství obsazeného místa.");
+                }
+            } else {
+                long vyuziteMisto = pevnyDisk.getVyuziteMisto();
+                if (pevnyDisk.getVyuziteMisto() - velikost >= 0) {
+                    pevnyDisk.setVyuziteMisto(vyuziteMisto - velikost);
+                    System.out.println("Soubor smazán.");
+                } else {
+                    System.err.println("Disk nemá takové množství obsazeného místa.");
+                }
+            }
         }
     }
 }
