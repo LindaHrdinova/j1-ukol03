@@ -17,6 +17,7 @@ public class HlavniProgram {
         System.out.println(lindinPocitac.toString());
 
         Procesor lindinProcesor = new Procesor();
+        lindinProcesor.setRychlost(-7_200_000_000L);
         lindinProcesor.setRychlost(3_200_000_000L);
         lindinProcesor.setVyrobce("AMD");
         lindinPocitac.zapniSe();

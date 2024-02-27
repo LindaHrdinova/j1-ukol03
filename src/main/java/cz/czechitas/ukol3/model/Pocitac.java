@@ -1,24 +1,26 @@
 package cz.czechitas.ukol3.model;
 
+;
+
 public class Pocitac {
 
-    private Boolean jeZapnuty = false;
+    private boolean jeZapnuty;
     private Procesor cpu;
     private Pamet ram;
     private Disk pevnyDisk;
     private Disk pevnyDisk2;
 
     public String toString() {
-        if (!jeZapnuty()) {
-            return null;
-        }
-        if (pevnyDisk2 == null) {
-            return (pevnyDisk.toString() + "\n" + ram.toString() + "\n" + cpu.toString());
-        } else {
-            return (pevnyDisk.toString() + "\n" + pevnyDisk2.toString() + "\n" + ram.toString() + "\n" + cpu.toString());
-        }
-
+        return (pevnyDisk + "\n" + ram + "\n" + cpu);
     }
+    /* toString nedodělaný bonus
+    public String toString() {
+        if (pevnyDisk2 == null && pevnyDisk != null) {
+            return (pevnyDisk + "\n" + ram + "\n" + cpu);
+        } else {
+            return (pevnyDisk + "\n" + pevnyDisk2 + "\n" + ram + "\n" + cpu);
+        }
+    }*/
 
     public boolean jeZapnuty() {
         return jeZapnuty;
@@ -30,15 +32,15 @@ public class Pocitac {
         } else if (ram == null || cpu == null || pevnyDisk == null) {
             System.err.println("Počítač nemá všechny součástky");
         } else {
-            System.out.println("Počítač se zapnul.");
             jeZapnuty = true;
+            System.out.println("Počítač se zapnul.");
         }
     }
 
     public void vypniSe() {
         if (jeZapnuty()) {
-            System.out.println("Počítač se vypnul.");
             jeZapnuty = false;
+            System.out.println("Počítač se vypnul.");
         }
     }
 
@@ -92,7 +94,7 @@ public class Pocitac {
             return;
         }
         long vyuziteMisto = pevnyDisk.getVyuziteMisto();
-        if (pevnyDisk.getVyuziteMisto() - velikost >= 0) {
+        if (vyuziteMisto - velikost >= 0) {
             pevnyDisk.setVyuziteMisto(vyuziteMisto - velikost);
             System.out.println("Soubor smazán.");
         } else {

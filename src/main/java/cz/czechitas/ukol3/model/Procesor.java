@@ -2,7 +2,7 @@ package cz.czechitas.ukol3.model;
 
 public class Procesor {
     private String vyrobce;
-    private Long rychlost;
+    private long rychlost;
 
     public String getVyrobce() {
         return vyrobce;
@@ -19,8 +19,9 @@ public class Procesor {
     public void setRychlost(Long rychlost) {
         if (rychlost < 0) {
             System.err.println("Rychlost procesoru nesmí být menší než 0");
+        } else {
+            this.rychlost = rychlost;
         }
-        this.rychlost = rychlost;
     }
 
     public String toString() {
